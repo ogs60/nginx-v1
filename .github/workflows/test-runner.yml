@@ -24,7 +24,3 @@ jobs:
       - name: Push image
         run: |
           docker push harbor.azhuan.ren/sre_uat/xbb-nginx:${GITHUB_SHA::7}
-      
-      - name: Deploy K3s
-  	run: |
-          echo "GITHUB_SHA"
