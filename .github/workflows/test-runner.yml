@@ -27,4 +27,4 @@ jobs:
       
       - name: Deploy K3s
   	run: |
-          echo $IMAGE_TAG
+          echo ${GITHUB_SHA::7}
