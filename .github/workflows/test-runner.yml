@@ -27,4 +27,4 @@ jobs:
       
       - name: Deploy K3s
   	run: |
-          echo ${GITHUB_SHA::7}
+          echo "GITHUB_SHA"
