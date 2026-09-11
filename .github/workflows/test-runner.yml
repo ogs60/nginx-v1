@@ -29,6 +29,7 @@ jobs:
         run: |
           echo "本次更新镜像harbor.azhuan.ren/sre_uat/xbb-nginx":"${GITHUB_SHA::7}"
           docker run --rm \
+            -e KUBECONFIG=/root/.kube/config \
             -v /root/.kube/config:/root/.kube/config \
             bitnami/kubectl:latest \
             set image deployment/xbb-nginx-v5 \
