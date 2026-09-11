@@ -9,7 +9,7 @@ COPY html/ /usr/share/nginx/html/
 # 复制 Nginx 配置
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 暴露 HTTP / HTTPS
+# 暴露 HTTP
 EXPOSE 80
 
 # 前台运行 Nginx
