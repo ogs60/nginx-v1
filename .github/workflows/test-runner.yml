@@ -27,8 +27,5 @@ jobs:
       
       - name: Deploy K3s
   	run: |
-  	  docker run --rm \
-  	    -v /root/.kube/config:/root/.kube/config \
-  	    bitnami/kubectl:latest \
-  	    set image deployment/xbb-nginx-v5 \
-  	    nginx=harbor.azhuan.ren/sre_uat/xbb-nginx:${GITHUB_SHA::7}
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          echo $IMAGE_TAG
