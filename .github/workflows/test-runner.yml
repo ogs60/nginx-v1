@@ -9,9 +9,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Check Environment
         run: |
           hostname
           uname -a
           docker version
           docker ps
+      
+      - name: Build image
+        run: |
+          docker build -t harbor.azhuan.ren/sre_uat/xbb-nginx:${GITHUB_SHA::7} .
+
+      - name: Push image
+        run: |
+          docker push harbor.azhuan.ren/sre_uat/xbb-nginx:${GITHUB_SHA::7}
