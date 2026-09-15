@@ -26,11 +26,12 @@ jobs:
           docker run --rm \
             -e SONAR_HOST_URL="${SONAR_HOST_URL}" \
             -e SONAR_TOKEN="${SONAR_TOKEN}" \
-            -v "${GITHUB_WORKSPACE}:/usr/src" \
+            -v "${{ github.workspace }}:/usr/src:ro" \
             -w /usr/src \
             sonarsource/sonar-scanner-cli:latest \
             -Dsonar.projectKey=xbb-nginx \
             -Dsonar.projectName=xbb-nginx \
+            -Dsonar.projectBaseDir=/usr/src \
             -Dsonar.sources=html
         env:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
