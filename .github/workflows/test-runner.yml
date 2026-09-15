@@ -29,7 +29,9 @@ jobs:
             -v "${GITHUB_WORKSPACE}:/usr/src" \
             -w /usr/src \
             sonarsource/sonar-scanner-cli:latest \
-            -Dproject.settings=/usr/src/sonar-project.properties
+            -Dsonar.projectKey=xbb-nginx \
+            -Dsonar.projectName=xbb-nginx \
+            -Dsonar.sources=html
         env:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
