@@ -23,16 +23,20 @@ jobs:
 
       - name: SonarQube Scan
         run: |
-          docker run --rm \
+          scanner_container="sonar-scanner-${GITHUB_RUN_ID}"
+          docker create \
+            --name "${scanner_container}" \
             -e SONAR_HOST_URL="${SONAR_HOST_URL}" \
             -e SONAR_TOKEN="${SONAR_TOKEN}" \
-            -v "${{ github.workspace }}:/usr/src:ro" \
             -w /usr/src \
             sonarsource/sonar-scanner-cli:latest \
             -Dsonar.projectKey=xbb-nginx \
             -Dsonar.projectName=xbb-nginx \
             -Dsonar.projectBaseDir=/usr/src \
             -Dsonar.sources=html
+          docker cp "${GITHUB_WORKSPACE}/." "${scanner_container}:/usr/src"
+          docker start --attach "${scanner_container}"
+          docker rm "${scanner_container}"
         env:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
