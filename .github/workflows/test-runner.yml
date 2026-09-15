@@ -17,15 +17,8 @@ jobs:
           docker version
           docker ps
           echo "SONAR_HOST_URL=${SONAR_HOST_URL}"
-          if [ -n "${SONAR_TOKEN}" ]; then
-            echo "SONAR_TOKEN is set"
-          else
-            echo "SONAR_TOKEN is not set"
-            exit 1
-          fi
         env:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       
       - name: Build image
         run: |
