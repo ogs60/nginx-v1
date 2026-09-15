@@ -27,7 +27,9 @@ jobs:
             -e SONAR_HOST_URL="${SONAR_HOST_URL}" \
             -e SONAR_TOKEN="${SONAR_TOKEN}" \
             -v "${GITHUB_WORKSPACE}:/usr/src" \
-            sonarsource/sonar-scanner-cli:latest
+            -w /usr/src \
+            sonarsource/sonar-scanner-cli:latest \
+            -Dproject.settings=/usr/src/sonar-project.properties
         env:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
