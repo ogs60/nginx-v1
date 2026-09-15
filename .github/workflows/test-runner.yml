@@ -16,9 +16,6 @@ jobs:
           uname -a
           docker version
           docker ps
-
-      - name: SonarQube Scan
-        run: |
           echo $SONAR_HOST_URL
           echo $SONAR_TOKEN
       
